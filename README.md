@@ -27,19 +27,28 @@
 	
 ## ABSTRACT <a name="ABSTRACT"></a>
 Con questa tesina ho voluto approfondire un argomento che ha saputo incuriosirmi particolarmente: la crittografia e l’importanza che assume ai giorni nostri. Per fare questo ho sviluppato un mio progetto per potermi imbattere nelle problematiche realizzative e verificarne con mano l’effettivo funzionamento.
-Partendo dalle conoscenze maturate durante l’anno scolastico sui Socket TCP in Java, sulla crittografia simmetrica e asimmetrica e sul protocollo HTTP (Hypertext Transfer Protocol), **ho voluto sviluppare un semplice Web Server utilizzando i socket**. Esso è in grado di gestire le richieste di trasferimento di pagine web provenienti da un web browser. 
-**Ho iniziato lo sviluppo implementando le funzioni di base del protocollo HTTP**, interpretando le richieste provenienti dal browser (**HTTP Request**) ed impacchettando le risposte (**HTTP Response**). Successivamente ho approfondito le mie conoscenze sui Socket SSL in Java implementandoli nel mio web server. In questo modo la mia comunicazione tramite il protocollo HTTP avviene all’interno di una connessione criptata TLS (Transport Layer Security) così **diventando** a tutti gli effetti **il protocollo HTTPS** (HTTP over TLS). 
+
+Partendo dalle conoscenze maturate durante l’anno scolastico sui Socket TCP in Java, sulla crittografia simmetrica e asimmetrica e sul protocollo HTTP (Hypertext Transfer Protocol), **ho voluto sviluppare un semplice Web Server utilizzando i socket**. Esso è in grado di gestire le richieste di trasferimento di pagine web provenienti da un web browser.
+
+**Ho iniziato lo sviluppo implementando le funzioni di base del protocollo HTTP**, interpretando le richieste provenienti dal browser (**HTTP Request**) ed impacchettando le risposte (**HTTP Response**). Successivamente ho approfondito le mie conoscenze sui Socket SSL in Java implementandoli nel mio web server. In questo modo la mia comunicazione tramite il protocollo HTTP avviene all’interno di una connessione criptata TLS (Transport Layer Security) così **diventando** a tutti gli effetti **il protocollo HTTPS** (HTTP over TLS).
+
 Il protocollo HTTPS comporta molti vantaggi dal punto di vista della sicurezza. Assicura che la comunicazione tra l’utente ed il sito web non sia né intercettata né alterata da terzi e dà una garanzia soddisfacente che si stia comunicando esattamente con il sito web voluto. Per fare ciò è necessario, oltre ai due interlocutori, anche di una terza parte fidata, una Certification Authority (CA), per la creazione del certificato digitale. In questo progetto, non avendo a disposizione una CA, ho dovuto provvedere a **creare un mio certificato self-signed**; in questo modo ho potuto anche constatare i comportamenti dei browsers in presenza di un certificato non riconosciuto da una CA.
+
 Per finire **ho messo alla prova il web server confrontando la versione HTTP con quella HTTPS, utilizzando il software Open Source Wireshark**, il quale permette di osservare in tempo reale tutto il traffico presente sulla rete. Ho verificato che i pacchetti provenienti dal mio web server HTTP fossero trasmessi in chiaro e visibili da chiunque fosse riuscito ad intercettare la comunicazione, mentre nella versione HTTPS la comunicazione viene cifrata, impedendo a qualsiasi malintenzionato di visionare quanto trasmesso e/o alterarlo.
+
 Da questa esperienza ho potuto constatare con mano quanto sia importante una comunicazione sicura, soprattutto oggigiorno con l’enormità di dati sensibili che viaggiano su internet, come ad esempio quelli scambiati durante gli acquisti online.
 
 ##	LA CRITTOGRAFIA <a name="LA_CRITTOGRAFIA"></a>
 ###	CRITTOGRAFIA SIMMETRICA <a name="CRITTOGRAFIA_SIMMETRICA"></a>
 La crittografia simmetrica rappresenta un metodo semplice per cifrare testo in chiaro dove la chiave per cifrare è la stessa per decifrare, rendendo l'algoritmo molto performante e semplice da implementare.
+
 Uno dei primi sistemi crittograﬁci moderni a chiave simmetrica è il DES (Data Encryption Standard), un algoritmo simmetrico con chiave privata da 64 bit, sviluppato per l’IBM nel 1976 e diventato uno standard negli USA per la protezione di dati sensibili.
+
 Il DES inizialmente ha suscitato molte discussioni per via della sua chiave di cifratura corta. Si supponeva che dietro questa scelta vi fosse la National Security Agency (NSA) e l'inserimento di una backdoor. Con la potenza di calcolo disponibile attualmente si può forzare una chiave DES in poche ore, esaminando tutte le possibili combinazioni (Attacco di forza bruta).
+
 Una caratteristica desiderata per ogni algoritmo di criptazione è quello che prende il nome di **effetto valanga**: un cambiamento di pochi bit nel plaintext deve provocare un cambiamento di quanti più bit nel ciphertext. Il DES possiede un forte effetto valanga.
 Attualmente il DES non è più utilizzato come standard negli USA ed è stato rimpiazzato dal **AES** (Advanced Encryption Standard) che utilizza una chiave che può essere di 128, 192 o 256 bit.
+
 Gli algoritmi simmetrici presentano alcuni limiti; quello più evidente è che le persone per comunicare devono essere in possesso della stessa chiave e, di fatto, questo limita la diffusione e il suo utilizzo.
 
 ![CRITTOGRAFIA SIMMETRICA](/images/image003.png)
