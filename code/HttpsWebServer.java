@@ -15,7 +15,7 @@ public class HttpsWebServer {
 
 	private SSLServerSocketFactory serverFactory;
 	private SSLServerSocket server;
-	// Porta su cui si metterà in ascolto il webServer
+	// Porta su cui si metterï¿½ in ascolto il webServer
 	private int port;
 	// Nome del Web Server
 	private String serverName;
@@ -53,7 +53,7 @@ public class HttpsWebServer {
 
 		} catch (BindException e) {
 			System.out.println("Server: Assicurarsi che un'altra istanza del" 
-					+ " programma non sia già in esecuzione");
+					+ " programma non sia giï¿½ in esecuzione");
 			System.out.println("Server: " + e);
 			System.exit(1);
 
@@ -145,7 +145,7 @@ public class HttpsWebServer {
 	private void inviaFile(SSLSocket client) throws IOException {
 		try {
 			// Provo a recuperare un percorso valido dalla combinazione della
-			// directory Home più quanto richiesto dal client
+			// directory Home piï¿½ quanto richiesto dal client
 			File file = trovaFile();
 
 			// Creo gli stream, in input dal file in output sul socket
@@ -169,9 +169,9 @@ public class HttpsWebServer {
 			input.close();
 
 		} catch (Exception e) {
-			// Nel caso non esista il file richiesto sarà generata una eccezione
-			// invierò al client un messaggio di errore (404 not found)
-			// più la relativa pagina come fatto per gli altri file
+			// Nel caso non esista il file richiesto sarï¿½ generata una eccezione
+			// invierï¿½ al client un messaggio di errore (404 not found)
+			// piï¿½ la relativa pagina come fatto per gli altri file
 			System.out.println("Server: 404 Not Found");
 
 			File file = Paths.get(home).resolve("Error.html").toFile();
@@ -193,13 +193,13 @@ public class HttpsWebServer {
 	}
 
 	// Provo a recuperare un percorso valido dalla conbinazione della directory
-	// Home più quanto richiesto dal client
+	// Home piï¿½ quanto richiesto dal client
 	private File trovaFile() {
 
 		String defaultFileName = "index.html"; // file da cercare se non
 												// specificato
 		Path root = Paths.get(home); // Percorso sul server dove cercare i file
-		Path joint; // Percorso dato dall'unione di root più quanto richiesto
+		Path joint; // Percorso dato dall'unione di root piï¿½ quanto richiesto
 					// dal client
 
 		// Unisco il percorso
@@ -207,7 +207,7 @@ public class HttpsWebServer {
 
 		if (!joint.toFile().exists()) // Se non esiste lo stampo a console
 			System.out.println("Server: File non trovato");
-		else if (joint.toFile().isDirectory()) { // Se è una directory aggiungo
+		else if (joint.toFile().isDirectory()) { // Se ï¿½ una directory aggiungo
 													// il "defaultFileName"
 			System.out.println("Server: Provo a cercare " + defaultFileName);
 			joint = Paths.get(joint.toString(), defaultFileName);
