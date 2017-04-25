@@ -179,16 +179,16 @@ Socket client = factory.createSocket(host, porta);
 ```
 Una volta creato, il socket si usa come un normale client socket, ma per rendere possibile la creazione del socket SSL, il programma deve conoscere il keystore e il truststore e le relative password. È possibile fornire tali informazioni usando opportune proprietà di sistema che possono essere impostate con il metodo **System.setProperty()**:
 ```java
-	System.setProperty("javax.net.ssl.keyStore", "C:\\_Certificati\\keystore.jks");
-	System.setProperty("javax.net.ssl.keyStorePassword", "password");
-	System.setProperty("javax.net.ssl.trustStore", "C:\\_Certificati\\truststore.jks");
-	System.setProperty("javax.net.ssl.trustStorePassword", "password");
+System.setProperty("javax.net.ssl.keyStore", "C:\\_Certificati\\keystore.jks");
+System.setProperty("javax.net.ssl.keyStorePassword", "password");
+System.setProperty("javax.net.ssl.trustStore", "C:\\_Certificati\\truststore.jks");
+System.setProperty("javax.net.ssl.trustStorePassword", "password");
 ```
 
 La creazione di server socket SSL è analoga alla creazione di socket, occorre usare le classi **SSLServerSocketFactory** e **SSLServerSocket**.
 ```java
-	ServerSocketFactory serverFactory = SSLServerSocketFactory.getDefault();
-	SSLServerSocket server = (SSLServerSocket) serverFactory.createServerSocket(porta);
+ServerSocketFactory serverFactory = SSLServerSocketFactory.getDefault();
+SSLServerSocket server = (SSLServerSocket) serverFactory.createServerSocket(porta);
 ```
 
 Una volta creato, il server socket si usa esattamente come un ServerSocket non crittografato, il keystore e il truststore devono essere specificati con le stesse proprietà di sistema. Per default i socket creati dalla factory effettuano l’autenticazione del solo server, ma se si desiderasse l’autenticazione anche del client, occorrerebbe richiamare il metodo **setNeedClientAuth()**.
@@ -372,19 +372,16 @@ In quest’ultimo passo viene effettuato l’**invio del file richiesto** (HTTP 
 // Home più quanto richiesto dal client
 private File trovaFile() {
 
-	String defaultFileName = "index.html"; // file da cercare se non
-											// specificato
+	String defaultFileName = "index.html"; // file da cercare se non specificato
 	Path root = Paths.get(home); // Percorso sul server dove cercare i file
-	Path joint; // Percorso dato dall'unione di root più quanto richiesto
-				// dal client
+	Path joint; // Percorso dato dall'unione di root più quanto richiesto dal client
 
 	// Unisco il percorso
 	joint = Paths.get(root.toString(), uri.getPath());
 
 	if (!joint.toFile().exists()) // Se non esiste lo stampo a console
 		System.out.println("Server: File non trovato");
-	else if (joint.toFile().isDirectory()) { // Se è una directory aggiungo
-												// il "defaultFileName"
+	else if (joint.toFile().isDirectory()) { // Se è una directory aggiungo il "defaultFileName"
 		System.out.println("Server: Provo a cercare " + defaultFileName);
 		joint = Paths.get(joint.toString(), defaultFileName);
 	}
