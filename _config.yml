@@ -1,3 +1,4 @@
 theme: jekyll-theme-cayman
 
-image_dir: /images
+title: [Web Server Java con Socket SSL]
+description: [L'importanza di una comunicazione sicura attraverso internet]
