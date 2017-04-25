@@ -232,7 +232,7 @@ public void creaServer() throws IOException {
 	} 
 	catch (BindException e) {
 		System.out.println("Server: Assicurarsi che un'altra istanza del" 
-				+ " programma non sia gi� in esecuzione");
+				+ " programma non sia già in esecuzione");
 		System.out.println("Server: " + e);
 		System.exit(1);
 	} 
@@ -421,7 +421,7 @@ In caso contrario, ad esempio se il file che si è provato ad aprire non esiste,
 private void inviaFile(SSLSocket client) throws IOException {
 	try {
 		// Provo a recuperare un percorso valido dalla combinazione della
-		// directory Home pi� quanto richiesto dal client
+		// directory Home più quanto richiesto dal client
 		File file = trovaFile();
 
 		// Creo gli stream, in input dal file in output sul socket
@@ -445,9 +445,9 @@ private void inviaFile(SSLSocket client) throws IOException {
 		input.close();
 
 	} catch (Exception e) {
-		// Nel caso non esista il file richiesto sar� generata una eccezione
-		// invier� al client un messaggio di errore (404 not found)
-		// pi� la relativa pagina come fatto per gli altri file
+		// Nel caso non esista il file richiesto sarà generata una eccezione
+		// invierà al client un messaggio di errore (404 not found)
+		// più la relativa pagina come fatto per gli altri file
 		System.out.println("Server: 404 Not Found");
 
 		File file = Paths.get(home).resolve("Error.html").toFile();
@@ -473,6 +473,7 @@ private void inviaFile(SSLSocket client) throws IOException {
 Un browser, al primo tentativo di connessione con il web server, richiederà il suo certificato digitale e proverà a verificarne l’identità attraverso una CA (Certification Authority). In questo caso, non avendo a disposizione una CA, ho dovuto generare un certificato detto **self-signed**, quindi fungendo da autorità di certificazione di me stesso.
 
 Il Browser ci avvertirà di questo mostrando una pagina simile alla seguente, in cui si potrà scegliere di fidarci del certificato o di non visitare il sito.
+
 ![Firefox connession non sicura](/images/image024.png)
 
 In questo caso scegliamo di fidarci, dal momento che ne conosciamo la fonte. Decidiamo di salvare il certificato localmente e di aggiungerlo come eccezione: così facendo, sarà considerato affidabile e nel caso in cui, in futuro, il web server ci invii un certificato diverso, ci sarà segnalato tempestivamente.
