@@ -508,12 +508,14 @@ Attualmente il protocollo TLS risulta inviolato, ma questo non significa che lo 
 1.	Sistemi e reti (Luigi Lo Russo, Elena Bianchi) HOEPLI
 2.	Tecnologie e progettazione di sistemi informatici (Paolo Camagni, Riccardo Nikolassy) HOEPLI
 3.	Codici & segreti (Simon Singh)
+
 ###	INTERNET
 4.	HTTP (HyperText Transfer Protocol) (https://www3.ntu.edu.sg/home/ehchua/programming/webprogramming/HTTP_Basics.html)
 5.	Java Secure Socket Extension Reference Guide
 (https://docs.oracle.com/javase/8/docs/technotes/guides/security/jsse/JSSERefGuide.html)
 6.	Programmazione di rete - Socket SSL/TLS
 (http://docplayer.it/1153220-Lezione-5-socket-ssl-tls-corso-di-programmazione-in-rete-laurea-magistrale-in-ing-informatica-universita-degli-studi-di-salerno.html)
+
 ###	WIKIPEDIA
 7.	Data Encryption Standard
 (https://it.wikipedia.org/wiki/Data_Encryption_Standard)
@@ -525,6 +527,7 @@ Attualmente il protocollo TLS risulta inviolato, ma questo non significa che lo 
 (https://it.wikipedia.org/wiki/Certificato_digitale)
 11.	HTTPS
 (https://it.wikipedia.org/wiki/HTTPS%0Ahttps://it.wikipedia.org/wiki/HTTPS)
+
 ###	SOFTWARE
 12.	Eclipse 4.5.2 (scrittura del Web Server)
 13.	Java 1.8 (esecuzione del Web Server)
