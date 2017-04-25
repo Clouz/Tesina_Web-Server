@@ -42,7 +42,7 @@ Una caratteristica desiderata per ogni algoritmo di criptazione è quello che pr
 Attualmente il DES non è più utilizzato come standard negli USA ed è stato rimpiazzato dal AES (Advanced Encryption Standard) che utilizza una chiave che può essere di 128, 192 o 256 bit.
 Gli algoritmi simmetrici presentano alcuni limiti; quello più evidente è che le persone per comunicare devono essere in possesso della stessa chiave e, di fatto, questo limita la diffusione e il suo utilizzo.
 
-![alt text](/images/image003.png "CRITTOGRAFIA SIMMETRICA")
+![CRITTOGRAFIA SIMMETRICA](/images/image003.png)
 
 ###	CRITTOGRAFIA ASIMMETRICA <a name="CRITTOGRAFIA_ASIMMETRICA"></a>
 L’idea alla base della crittograﬁa asimmetrica è quello di avere due chiavi diverse, una pubblica per cifrare ed una privata per decifrare, che deve essere mantenuta assolutamente segreta.
