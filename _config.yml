@@ -1,4 +1,8 @@
 theme: jekyll-theme-cayman
 
+author: Claudio Mola
+author_email: clouz85@gmail.com
+
+
 title: "Web Server Java con Socket SSL"
 description: "L'importanza di una comunicazione sicura attraverso internet"
