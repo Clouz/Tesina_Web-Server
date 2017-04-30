@@ -1,6 +1,3 @@
-# Web Server Java con Socket SSL
-## L'importanza di una comunicazione sicura attraverso internet
-
 1.	[ABSTRACT](#ABSTRACT)
 1.	[LA CRITTOGRAFIA](#LA_CRITTOGRAFIA)
 	1.	[CRITTOGRAFIA SIMMETRICA](#CRITTOGRAFIA_SIMMETRICA)
