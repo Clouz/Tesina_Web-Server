@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Tesina anno scolastico 2015-2016">
+    <meta name="author" content="Claudio Mola">
+
+    <title>Web Server in Java utilizzando i socket SSL</title>
+
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/scrolling-nav.css" rel="stylesheet">
+
+    <script src="/js/jquery.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/jquery.easing.min.js"></script>
+    <script src="/js/scrolling-nav.js"></script>
+</head>
+
+<body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                    <span class="sr-only"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand page-scroll" href="#Cover">
+                    <span class="green">https</span><span class="grey">://</span>
+                </a>
+            </div>
+
+            <div class="collapse navbar-collapse navbar-ex1-collapse">
+                <ul class="nav navbar-nav">
+                    <li class="hidden"><a class="page-scroll" href="#Cover"></a></li>
+                    <li><a class="page-scroll" href="#Scopo">Scopo</a></li>
+                    <li><a class="page-scroll" href="#ComunicazioneSicura">Comunicazione sicura</a></li>
+                    <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Web Server<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a class="page-scroll" href="#CicloVita">Ciclo vita</a></li>
+                            <li><a class="page-scroll" href="#CreaServer">1. creaServer()</a></li>
+                            <li><a class="page-scroll" href="#Connessione">2. connessione()</a></li>
+                            <li><a class="page-scroll" href="#ClientHeader">3. clientHeader()</a></li>
+                            <li><a class="page-scroll" href="#InviaFile">4. inviaFile()</a></li>
+                        </ul></li>
+                    <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Mettiamolo alla prova<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a class="page-scroll" href="#Tipologia">Tipologie di test</a></li>
+                            <li><a class="page-scroll" href="#Identità">Identità</a></li>
+                            <li><a class="page-scroll" href="#Privacy">Privacy</a></li>
+                        </ul></li>
+                    <li><a class="page-scroll" href="#Conclusioni">Conclusioni</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <section id="Cover" class="slide-a">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <br>
+                    <br><a class="btn btn-success page-scroll" href="#Scopo">Prossimo ></a>
+
+                    <h2><small>
+                        Istituto di Istruzione Superiore Evangelista Torricelli<br>
+                        Claudio Mola<br>
+                        Anno scolastico 2015 - 2016
+                    </small></h2>
+                    
+                    <br><br>
+
+                    <h1>
+                        Web Server in Java utilizzando i Socket SSL<br>
+                        <small>L'importanza di una comunicazione sicura attraverso internet</small>
+                    </h1>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="Scopo" class="slide-b">
+  
+        
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="btn-group">
+                        <a class="btn btn-success page-scroll" href="#Cover"><i class="icon-align-left">< Precedente</i></a>
+                        <a class="btn btn-success page-scroll" href="#ComunicazioneSicura"><i class="icon-align-right">Prossimo ></i></a>
+                    </div>
+                    <h1>Scopo del progetto</h1>
+                </div>
+                <div class="col-md-12">
+                    <p class="lead text-justify">Lo scopo principale di questo progetto è applicare quanto imparato, sia sulla cifratura, sia sui Socket SSL, per la creazione di un semplice Web Server HTTPS. Le sue funzionalità principali devono comprendere  il  leggere  e  l’interpretare  una  richiesta  HTTP  (<code>HTTP  Request</code>),  ricavandone  quanto necessario per generare una risposta HTTP (<code>HTTP Response</code>). Tutto questo attraverso un canale sicuro (<code>SSL/TLS</code>)</p>
+                </div>
+                <div class="col-md-12">
+                    <img src="/slide/img/1.1 Client WebServer.png" class="img-responsive  center-block" alt="HTTP Request/Response"> 
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="ComunicazioneSicura" class="slide-a">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="btn-group">
+                        <a class="btn btn-success page-scroll" href="#Scopo"><i class="icon-align-left">< Precedente</i></a>
+                        <a class="btn btn-success page-scroll" href="#CicloVita"><i class="icon-align-right">Prossimo ></i></a>
+                    </div>
+                    <h1>Un canale sicuro attraverso internet (SSL/TLS)</h1>
+                </div>
+                <div class="col-md-6">
+                    <p class="lead text-justify">Il protocollo SSL/TLS è nato al ﬁne di garantire la sicurezza delle trasmissioni su Internet mediante tre funzionalità fondamentali:</p>
+                        <div class="list-group">
+                          <a href="#A" class="list-group-item switch-chart" data-toggle="collapse">
+                            <h4 class="list-group-item-heading">Riservatezza del collegamento</h4>
+                          </a>
+                          <a href="#B" class="list-group-item switch-chart" data-toggle="collapse">
+                            <h4 class="list-group-item-heading">Autenticazione</h4>
+                          </a>
+                          <a href="#C" class="list-group-item" data-toggle="collapse">
+                            <h4 class="list-group-item-heading">Affidabilità</h4>
+                          </a>
+                    </div>
+                </div>
+
+
+
+                <script type="text/javascript">
+                        $("a[href='#A']").click(function(){
+                            $("#A").collapse('show');
+                            $("#B").collapse('hide');
+                            $("#C").collapse('hide');
+                        });
+
+                        $("a[href='#B']").click(function(){
+                            $("#B").collapse('show');
+                            $("#A").collapse('hide');
+                            $("#C").collapse('hide');
+                        });
+
+                        $("a[href='#C']").click(function(){
+                            $("#C").collapse('show');
+                            $("#A").collapse('hide');
+                            $("#B").collapse('hide');
+                        });
+                </script>
+
+
+                <div class="row">
+                    <div class="col-md-6 pull-right">
+                        <div id="A" class="collapse">
+                            <p class="lead text-justify">
+                                La  riservatezza  del  collegamento  viene  garantita  mediante algoritmi di crittograﬁa a chiave simmetrica (ad esempio DES e AES).
+                            </p>
+                        </div>
+                        <div id="B" class="collapse">
+                            <p class="lead text-justify">
+                                L’autenticazione  dell’identità  viene  effettuata  con  la  crittograﬁa  a  chiave pubblica (per esempio RSA): in questo modo si garantisce ai client di comunicare con il server corretto, introducendo a tale scopo anche meccanismi di certiﬁcazione sia del server che del client.
+                            </p>
+                        </div>
+                        <div id="C" class="collapse">
+                            <p class="lead text-justify">
+                                Il  livello  di  trasporto  include  un  controllo  sull’integrità  del  messaggio  con  un sistema detto MAC (Message Authentication Code) che utilizza funzioni hash sicure come SHA e MD5: avviene la veriﬁca di integrità sui dati spediti in modo da avere la certezza che non siano stati alterati durante la trasmissione.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                </div>
+
+            <div class="col-md-6">
+                <img src="/slide/img/2.1 SSL TLSpng.png" class="img-responsive" alt="SSL/TLS"> 
+            </div>
+
+            </div>            
+    </section>
+
+    <section id="CicloVita" class="slide-b">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="btn-group">
+                        <a class="btn btn-success page-scroll" href="#ComunicazioneSicura"><i class="icon-align-left">< Precedente</i></a>
+                        <a class="btn btn-success page-scroll" href="#CreaServer"><i class="icon-align-right">Prossimo ></i></a>
+                    </div>
+                    <h1>Ciclo di vita del web server</h1>
+                </div>
+                <div class="col-md-12">
+                    <p class="lead text-justify">La struttura del Web Server è riassumibile in 4 passaggi:</p>
+                    <h3><span class="label label-primary">creaServer()</span> > <span class="label label-primary">connessione()</span> > <span class="label label-primary">clientHeader()</span> > <span class="label label-primary">inviaFile()</span></h2>
+
+                    <p class="lead text-justify">La creazione del Server Socket (<code>creaServer()</code>) viene eseguita solo all’avvio del Web Server, mentre mettersi in attesa del client (<code>connessione()</code>), leggere la richiesta (<code>clientHeader()</code>) e inviare la risposta (<code>inviaFile()</code>) sono eseguiti in un ciclo senza fine.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="CreaServer" class="slide-a">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="btn-group">
+                        <a class="btn btn-success page-scroll" href="#CicloVita"><i class="icon-align-left">< Precedente</i></a>
+                        <a class="btn btn-success page-scroll" href="#Connessione"><i class="icon-align-right">Prossimo ></i></a>
+                    </div>
+                    <h1>Creazione del server socket</h1>
+                </div>
+                <div class="col-md-12">
+                    <p class="lead text-justify">In questo primo passo viene creato il Server Socket attraverso la classe <code>SSLServerSocketFactory</code>. Questa classe permette di rendere del tutto trasparente l'Handshake effettuato dal protocollo TLS.<br>E' necessario specificare anche la posizione delle coppie di chiavi (keystore) e dei certificati digitali (truststore) con le relative password.</p>
+                    <p class="lead text-justify">Questa è l’unica differenza che si può trovare tra un Socket SSL ed un Socket TCP in chiaro, in quanto sarà SSLSocketFactory ad occuparsi di tutti i dettagli della configurazione di un Secure Socket.</p>
+                    <img src="/slide/img/3.0 ServerSocket.png" class="img-responsive" alt="ServerSocket" width=80%>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="Connessione" class="slide-b">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="btn-group">
+                        <a class="btn btn-success page-scroll" href="#CreaServer"><i class="icon-align-left">< Precedente</i></a>
+                        <a class="btn btn-success page-scroll" href="#ClientHeader"><i class="icon-align-right">Prossimo ></i></a>
+                    </div>
+                    <h1>Attesa del client</h1>
+                </div>
+                <div class="col-md-12">
+                    <p class="lead text-justify">Il secondo passo consiste nel mettersi in attesa del Client. Questo metodo <code>connessione()</code> rappresenta il corpo del programma e da qui verranno gestite tutte le successive fasi.</p>
+                    <p class="lead text-justify">Il server è in attesa sulla porta 443 (porta di default per HTTPS), successivamente un client richiede una connessione ed attraverso il protocollo TLS viene instaurata una comunicazione sicura.</p>
+                </div>
+                <div class="col-md-6">
+                    <img src="/slide/img/3.1 Attesa Code.png" class="img-responsive" alt="Codice Connessione" width=90%>
+                </div>
+                <div class="col-md-6">
+                    <img src="/slide/img/3.1 Attesa.png" class="img-responsive" alt="Attesa del client"  width=80%>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="ClientHeader" class="slide-a">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="btn-group">
+                        <a class="btn btn-success page-scroll" href="#Connessione"><i class="icon-align-left">< Precedente</i></a>
+                        <a class="btn btn-success page-scroll" href="#InviaFile"><i class="icon-align-right">Prossimo ></i></a>
+                    </div>
+                    <h1>HTTP Request</h1>
+                </div>
+                <div class="col-md-12">
+                    <p class="lead text-justify">In questo terzo passo viene effettuata la lettura dell'<b>Header HTML</b>, dove la prima riga conterrà URI della risorsa richiesta. Ad esempio attraverso il metodo <b>GET</b> il client fa una richiesta della risorsa “/index.html” utilizzando il protocollo HTTP versione 1.1. Le successive righe della richiesta si chiamano Request Header e forniscono informazioni aggiuntive come ad esempio l’IP dell’host e l’User-Agent.</p>                    
+                </div> 
+                <div class="col-md-6">
+                    <img src="/slide/img/3.2 HTTP Request Code.png" class="img-responsive" alt="HTTP Request Code">
+                </div>
+                <div class="col-md-6">
+                    <img src="/slide/img/3.2 HTTP Request Descrizione.png" class="img-responsive" alt="HTTP Request">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="InviaFile" class="slide-b">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="btn-group">
+                        <a class="btn btn-success page-scroll" href="#ClientHeader"><i class="icon-align-left">< Precedente</i></a>
+                        <a class="btn btn-success page-scroll" href="#Tipologia"><i class="icon-align-right">Prossimo ></i></a>
+                    </div>
+                    <h1>HTTP Response</h1>
+                </div>
+                <div class="col-md-12">
+                    <p class="lead text-justify">A questo punto si può procedere ad inviare la risposta al client, impacchettando il messaggio come richiesto dal protocollo HTTP (<code>HTTP Response message</code>). Esso è composto da una Status Line e da un Response Header. Dopo una riga bianca sarà aggiunto il corpo del messaggio; in questo caso, il file ricavato precedentemente sarà letto dalla classe <code>FileInputStream</code> e scritto sul Buffer di uscita verso il client.</p>
+                    
+                </div>
+                <div class="col-md-6">
+                    <img src="/slide/img/3.3 HTTP Response Code.png" class="img-responsive center-block" alt="HTTP Response Code">
+                </div>
+                <div class="col-md-6">
+                    <img src="/slide/img/3.3 HTTP Response Descrizione.png" class="img-responsive center-block" alt="HTTP Response">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="Tipologia" class="slide-a">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="btn-group">
+                        <a class="btn btn-success page-scroll" href="#InviaFile"><i class="icon-align-left">< Precedente</i></a>
+                        <a class="btn btn-success page-scroll" href="#Identità"><i class="icon-align-right">Prossimo ></i></a>
+                    </div>
+                    <h1>Tipologie di test</h1>
+                </div>
+                <div class="col-md-12">
+                    <p class="lead text-justify">Per poter valutare, che effettivamente il web-server, comunichi in maniera sicura attraverso internet è possibile effettuare dei test per verificare:</p>
+                    <ol>
+                        <span class="lead">
+                            <li>l'idendità;</li>
+                            <li>la privacy.</li>
+                        </span>
+                    </ol>
+                    <p class="lead text-justify">In questo modo si potrà essere del tutto sicuri che i nostri dati non corrano il richio di essere visionati da terzi.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="Identità" class="slide-b">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="btn-group">
+                        <a class="btn btn-success page-scroll" href="#Tipologia"><i class="icon-align-left">< Precedente</i></a>
+                        <a class="btn btn-success page-scroll" href="#Privacy"><i class="icon-align-right">Prossimo ></i></a>
+                    </div>
+                    <h1>Verificare l'identità</h1>
+                </div>
+                <div class="col-md-12">
+                    <p class="lead text-justify">La verifica dell'identità viene effettuata attraverso un certificato digitale contenente la chiave pubblica del Web-Server, se questo cambiasse il browser ci avvertirebbe immediatamente.</p>
+
+                    <img src="/slide/img/4.1 Identità.png" class="img-responsive center-block" alt="Firefox message" width=40%>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="Privacy" class="slide-a">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="btn-group">
+                        <a class="btn btn-success page-scroll" href="#Identità"><i class="icon-align-left">< Precedente</i></a>
+                        <a class="btn btn-success page-scroll" href="#Conclusioni"><i class="icon-align-right">Prossimo ></i></a>
+                    </div>
+                    <h1>Verificare la privacy</h1>
+                </div>
+                <div class="col-md-12">
+                    <p class="lead text-justify">Per verificare che il canale di comunicazione garantisca la privacy, si utilizzerà il packet sniffer Wireshark, con lo scopo di visionare da prima il traffico generato da un Web Server HTTP e successivamente con la stessa metodologia si verificherà la versione HTTPS.</p>
+
+                    <img src="/slide/img/5.1 Privacy.png" class="img-responsive center-block" alt="Packet Sniffer" >
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="Conclusioni" class="slide-b">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1>Conclusioni</h1>
+                </div>
+                <div class="col-md-12">
+                    <p class="lead text-justify">Attualmente il protocollo TLS risulta inviolato, ma questo non significa che lo sarà per sempre, quindi è molto importante rimanere sempre aggiornati sull’evoluzione della crittografia, per non rischiare che i nostri dati finiscano nelle mani sbagliate.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+</body>
+</html>
