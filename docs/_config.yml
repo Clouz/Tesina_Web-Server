@@ -8,6 +8,8 @@ paginate:     1
 author:
   name:          Claudio Mola
   url:           https://clouz.github.io/Tesina_Web-Server/
+  urlGit:        https://github.com/Clouz/Tesina_Web-Server
+  urlDownload:   https://github.com/Clouz/Tesina_Web-Server/releases
 
 # Gems
 gems:
