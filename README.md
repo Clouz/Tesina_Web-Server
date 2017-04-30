@@ -394,6 +394,7 @@ private File trovaFile() {
 ```
 
 A questo punto si può procedere ad inviare la risposta al client, impacchettando il messaggio come richiesto dal protocollo HTTP (HTTP Response message). Esso è composto da una Status Line e da un Response Header. Dopo una riga bianca sarà aggiunto il corpo del messaggio; in questo caso, il file ricavato precedentemente sarà letto dalla classe **FileInputStream** e scritto sul Buffer di uscita verso il client.
+
 ![HTTP  Response message](/docs/images/image021.png)
 
 La **Status Line** ha la seguente sintassi:
