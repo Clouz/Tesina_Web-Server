@@ -1,0 +1,21 @@
+# Setup
+title:        Web Server Java con Socket SSL
+tagline:      L'importanza di una comunicazione sicura attraverso internet
+baseurl:      ""
+paginate:     1
+
+# About/contact
+author:
+  name:          Claudio Mola
+  url:           https://clouz.github.io/Tesina_Web-Server/
+  urlGit:        https://github.com/Clouz/Tesina_Web-Server
+  urlDownload:   https://github.com/Clouz/Tesina_Web-Server/releases
+
+# Gems
+gems:
+  - jekyll-paginate
+
+#Others
+markdown: kramdown
+
+show_downloads: "true"

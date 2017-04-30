@@ -51,7 +51,7 @@ Attualmente il DES non è più utilizzato come standard negli USA ed è stato ri
 
 Gli algoritmi simmetrici presentano alcuni limiti; quello più evidente è che le persone per comunicare devono essere in possesso della stessa chiave e, di fatto, questo limita la diffusione e il suo utilizzo.
 
-![CRITTOGRAFIA SIMMETRICA](/docs/images/image003.png)
+![CRITTOGRAFIA SIMMETRICA](/images/image003.png)
 
 ###	CRITTOGRAFIA ASIMMETRICA <a name="CRITTOGRAFIA_ASIMMETRICA"></a>
 L’idea alla base della crittograﬁa asimmetrica è quello di avere due chiavi diverse, una pubblica per cifrare ed una privata per decifrare, che deve essere mantenuta assolutamente segreta.
@@ -67,7 +67,7 @@ Con la crittografia asimmetrica si risolvono due problemi, quello della riservat
 
 Se si volesse garantire sia la riservatezza che l’autenticità, basterebbe combinare entrambe le tecniche.
 
-![CRITTOGRAFIA ASIMMETRICA](/docs/images/image004.png)
+![CRITTOGRAFIA ASIMMETRICA](/images/image004.png)
 
 Il principale svantaggio degli algoritmi a cifratura asimmetrica sta nella complessità dei calcoli che rendono poco efficiente la loro implementazione soprattutto con l’aumentare della lunghezza della chiave. 
 
@@ -104,7 +104,7 @@ Il protocollo SSL/TLS garantisce la sicurezza del collegamento mediante tre funz
 2.	**autenticazione**: l’autenticazione dell’identità viene effettuata con la crittograﬁa a chiave pubblica (per esempio **RSA**): in questo modo si garantisce ai client di comunicare con il server corretto, introducendo a tale scopo anche meccanismi di **certiﬁcazione** sia del server che del client;
 3.	**affidabilità**: il livello di trasporto include un controllo sull’integrità del messaggio con un sistema detto MAC (Message Authentication Code) che utilizza funzioni hash sicure come SHA e MD5: avviene la veriﬁca di integrità sui dati spediti in modo da avere la certezza che non siano stati alterati durante la trasmissione.
 
-![PROTOCOLLO SSL/TLS](/docs/images/image005.png)
+![PROTOCOLLO SSL/TLS](/images/image005.png)
 
 TSL è un protocollo di livello 5 (sessione) che opera quindi al di sopra del livello di trasporto composto da due livelli:
 1.	**TLS Record Protocol**: opera a livello più basso, direttamente al di sopra di un protocollo di trasporto affidabile come il TCP ed è utilizzato per i protocolli del livello superiore, tra cui l’Handshake Protocol, offrendo in questo modo i servizi di sicurezza;
@@ -126,7 +126,7 @@ Il tool richiede alcune informazioni sull’identità della persona che genera l
 
 Ecco un esempio di che cosa avviene durante la creazione di una coppia di chiavi:
 
-![Keytool](/docs/images/image006.png)
+![Keytool](/images/image006.png)
 
 È possibile visualizzare il contenuto di un keystore con il comando:
 ```bash
@@ -149,7 +149,7 @@ keytool -export -alias nome -keystore keystore -rfc -file fileCertificato
 ```
 Questo è quello che succede durante la generazione di un certificato:
 
-![keytool](/docs/images/image007.png)
+![keytool](/images/image007.png)
 
 A questo punto è necessario importare il certificato nel truststore:
 ```bash
@@ -157,7 +157,7 @@ keytool -import -alias nome -keystore truststore -file fileCertificato
 ```
 
 Questo è quello che succede durante l’importazione del certificato. Verrà mostrato il proprietario, l’ente emittente e le impronte del certificato nei vari algoritmi di hashing:
-![keytool](/docs/images/image008.png)
+![keytool](/images/image008.png)
 
 ###	L’USO DEI SOCKET SSL/TLS IN JAVA <a name="SOCKET_TLS_IN_JAVA"></a>
 In Java l’uso di SSL/TLS si basa sulle classi **SSLSocket** e **SSLServerSocket**, che estendono rispettivamente **Socket** e **ServerSocket**. Una volta effettuata la creazione dei socket, non c’è differenza per l’applicazione rispetto all’uso di socket non crittografati.
@@ -199,7 +199,7 @@ server.setNeedClientAuth(true);
 ##	UN SEMPLICE WEB SERVER HTTPS IN JAVA <a name="WEB_SERVER_HTTPS_IN_JAVA"></a>
 ###	INTRODUZIONE <a name="#INTRODUZIONE"></a>
 Lo scopo principale di questo progetto è applicare quanto visto in precedenza, sia sulla cifratura, sia sui Socket SSL, per la creazione di un semplice Web Server HTTPS. Le sue funzionalità principali devono comprendere il leggere e l’interpretare una richiesta HTTP (**HTTP Request**), ricavandone quanto necessario per generare una risposta HTTP (**HTTP Response**).
-![HTTP Request e Response](/docs/images/image015.png)
+![HTTP Request e Response](/images/image015.png)
 
 Dovendo prima di tutto garantire la riservatezza della comunicazione, non ho dato priorità all’implementazione totale del protocollo HTTP, ma solo alla parte necessaria per una comunicazione minima, cioè leggere la richiesta ed inoltrare la pagina voluta. Inoltre il Web Server, coinvolgendo una sola coppia di processi alla volta, avrà una comunicazione di tipo unicast. Questo ha un impatto sulle prestazioni generali del web server, ma ne ha reso anche più semplice lo sviluppo.
 
@@ -394,7 +394,7 @@ private File trovaFile() {
 ```
 
 A questo punto si può procedere ad inviare la risposta al client, impacchettando il messaggio come richiesto dal protocollo HTTP (HTTP Response message). Esso è composto da una Status Line e da un Response Header. Dopo una riga bianca sarà aggiunto il corpo del messaggio; in questo caso, il file ricavato precedentemente sarà letto dalla classe **FileInputStream** e scritto sul Buffer di uscita verso il client.
-![HTTP  Response message](/docs/images/image021.png)
+![HTTP  Response message](/images/image021.png)
 
 La **Status Line** ha la seguente sintassi:
 ```java
@@ -471,7 +471,7 @@ Un browser, al primo tentativo di connessione con il web server, richiederà il 
 
 Il Browser ci avvertirà di questo mostrando una pagina simile alla seguente, in cui si potrà scegliere di fidarci del certificato o di non visitare il sito.
 
-![Firefox connession non sicura](/docs/images/image024.png)
+![Firefox connession non sicura](/images/image024.png)
 
 In questo caso scegliamo di fidarci, dal momento che ne conosciamo la fonte. Decidiamo di salvare il certificato localmente e di aggiungerlo come eccezione: così facendo, sarà considerato affidabile e nel caso in cui, in futuro, il web server ci invii un certificato diverso, ci sarà segnalato tempestivamente.
 
@@ -480,7 +480,7 @@ Questa eventualità può essere verificata specificando nel Web Server un certif
 ##	ANALISI DEI PACCHETTI CON WIRESHARK <a name="ANALISI_DEI_PACCHETTI_CON_WIRESHARK"></a>
 ###	INTRODUZIONE <a name="INTRODUZIONE"></a>
 Come già visto in precedenza, il protocollo HTTPS garantisce l’autenticazione del sito web, la protezione della privacy e l’integrità dei dati. Attraverso l’utilizzo dei certificati digitali, è possibile garantire l’autenticazione, dimostrata nel capitolo precedente. Ora vogliamo verificare che il Web Server provveda anche a tutelare la privacy. Per fare ciò utilizzeremo un **packet sniffer**. Il suo scopo è osservare i messaggi scambiati tra diversi dispositivi, inviati e ricevuti, copiandoli passivamente.
-![Packet Sniffer](/docs/images/image025.png)
+![Packet Sniffer](/images/image025.png)
 
 Il packet sniffer è organizzato in due parti:
 1.	la **libreria di cattura dei pacchetti** (pcap), riceve una copia di ogni frame che a livello di collegamento viene inviato o ricevuto dal computer. Questo consente di ottenere tutti i messaggi ricevuti o inviati da tutti i protocolli/applicazioni in esecuzione;
@@ -495,29 +495,29 @@ Successivamente, proveremo la medesima tecnica sul Web Server sicuro (HTTPS) per
 ###	HTTP SNIFFING CON WIRESHARK <a name="HTTP_SNIFFING_CON_WIRESHARK"></a>
 Come primo passo, è necessario creare un caso di studio facile da analizzare. Quindi è stata creata una semplice pagina HTML nella cartella “/carta” del Web Server contenente gli ipotetici dati di una carta di credito del sig. Dylan Dog.
 
-![Dylan Dog Carta di credito](/docs/images/image026.png)
+![Dylan Dog Carta di credito](/images/image026.png)
 
 Mandando in esecuzione Wireshark si deve prima di tutto selezionare l’interfaccia di rete che si vuole utilizzare, in questo caso “Connessione alla rete locale (LAN)” ed impostare un filtro sull’indirizzo ip del Web Server “**ip.addr == 192.168.0.20**” in modo tale da visualizzare solo i pacchetti di nostro interesse.
 
 Ora, connettendosi al Web Server all’indirizzo “/carta”, sulla pagina di Wireshark compariranno tutti i pacchetti scambiati tra il client ed il server ed in particolare sono presenti due messaggi HTTP, il primo è la richiesta fatta dal Browser al Web Server (HTTP Request), mentre il secondo è la risposta con la pagina richiesta (HTTP Response).
-![Messaggi HTTP](/docs/images/image027.png)
+![Messaggi HTTP](/images/image027.png)
 
 Volendo approfondire l’analisi di questi due messaggi, si può notare che tutta la comunicazione transiti in chiaro sulla rete, rendendone possibile la lettura a chiunque riesca ad intercettarla. Questo renderebbe il sig. Dylan Dog un po’ più povero, ma fortunatamente oggigiorno è difficile trovare negozi online che non utilizzino il protocollo HTTPS.
-![Flusso TCP](/docs/images/image028.png)
+![Flusso TCP](/images/image028.png)
 
 ###	HTTPS SNIFFING CON WIRESHARK <a name="HTTPS_SNIFFING_CON_WIRESHARK"></a>
 Seguendo la medesima metodologia dello sniffing HTTP, proveremo ora ad analizzare che cosa un eventuale utente esterno vedrebbe con una comunicazione HTTPS.
 
 La prima cosa che si nota è che i due messaggi HTTP (Request e Response) non sono più presenti in maniera esplicita ed al loro posto troviamo l’Handshake del protocollo TLS. Esso provvederà a negoziare la suite di cifratura, ad autenticare il server e a scambiarsi la chiave di sessione. 
-![Handshake TLS](/docs/images/image029.png)
+![Handshake TLS](/images/image029.png)
 
 TLS Handshake Protocol si sviluppa nei seguenti passaggi:
 1.	Il Client invia un messaggio “Client Hello” al server indicando le suite di cifratura supportate insieme ad un numero casuale (No.4); 
-![Client Hello](/docs/images/image030.png)
+![Client Hello](/images/image030.png)
 
 2.	Il Server risponde con un messaggio “Server Hello” inviando anche lui un numero casuale (No.5);
 3.	Il Server invia il suo certificato per autenticarsi ed il messaggio “Server Hello Done” (No.5);
-![Server Hello Done](/docs/images/image031.png)
+![Server Hello Done](/images/image031.png)
 
 4.	Il Client crea con i numeri random precedentemente scambiati un Pre-Master Secret, lo cifra con la chiave pubblica del server e lo invia con il messaggio “Client Key Exchange” (No.6); 
 5.	Il Server ed il Client generano un Master Secret ed una Session Key basati sul Pre-Master Secret;
@@ -525,11 +525,11 @@ TLS Handshake Protocol si sviluppa nei seguenti passaggi:
 7.	Infine il Server manda anche lui il messaggio “Change Cipher Spec” per indicare che ha iniziato ad usare la nuova Session Key per cifrare/decifrare i messaggi (No.9);
 
 Si può notare che in realtà, HTTP Request e Response sono presenti ma cifrati (No. 7 e 10). Infatti i due messaggi **Application Data** nascondono al loro interno i nostri HTTP. Questo è proprio ciò che volevamo vedere, in quanto ci permette di validare il Web Server come sicuro e permette al sig. Dylan di dormire sonni tranquilli.
-![Messaggio cifrato](/docs/images/image032.png)
+![Messaggio cifrato](/images/image032.png)
 
 Come ulteriore conferma si può indicare a Wireshark dove trovare la Session Key generata dal Browser (impostando una variabile d’ambiente) per poter decifrare i messaggi ed avere la conferma che siano proprio i due Application data di nostro interesse. 
 Come si può notare, questa volta ricatturando i pacchetti viene mostrata sia la versione cifrata che quella decifrata.
-![Messaggio decifrato](/docs/images/image033.png)
+![Messaggio decifrato](/images/image033.png)
 
 ##	CONCLUSIONI <a name="CONCLUSIONI"></a>
 Sviluppando questo progetto ho avuto modo di ampliare le mie conoscenze sulla crittografia, ma in particolar modo è stato appagante utilizzare quanto appreso durante l’anno scolastico, come punto di partenza per comprendere argomenti come i Socket SSL ed utilizzarli per creare un Web Server, in maniera del tutto autonoma, seguendo semplicemente le regole del protocollo.
